@@ -464,6 +464,10 @@ class ToolBarState extends State<ToolBar> {
           _toolbarList[i] =
               _toolbarList[i].copyWith(isActive: formatMap['header'] == 2);
           break;
+        case ToolBarStyle.headerThree:
+          _toolbarList[i] =
+              _toolbarList[i].copyWith(isActive: formatMap['header'] == 3);
+          break;
         case ToolBarStyle.color:
           _toolbarList[i] =
               _toolbarList[i].copyWith(isActive: formatMap['color'] != null);
@@ -711,6 +715,8 @@ class ToolBarState extends State<ToolBar> {
                   for (var element in _toolbarList) {
                     if (element.style == ToolBarStyle.headerTwo) {
                       element = element.copyWith(isActive: false);
+                    } else if (element.style == ToolBarStyle.headerThree) {
+                      element = element.copyWith(isActive: false);
                     }
                   }
                   toolbarItem =
@@ -718,6 +724,18 @@ class ToolBarState extends State<ToolBar> {
                 } else if (toolbarItem.style == ToolBarStyle.headerTwo) {
                   for (var element in _toolbarList) {
                     if (element.style == ToolBarStyle.headerOne) {
+                      element = element.copyWith(isActive: false);
+                    } else if (element.style == ToolBarStyle.headerThree) {
+                      element = element.copyWith(isActive: false);
+                    }
+                  }
+                  toolbarItem =
+                      toolbarItem.copyWith(isActive: !toolbarItem.isActive);
+                } else if (toolbarItem.style == ToolBarStyle.headerThree) {
+                  for (var element in _toolbarList) {
+                    if (element.style == ToolBarStyle.headerOne) {
+                      element = element.copyWith(isActive: false);
+                    } else if (element.style == ToolBarStyle.headerTwo) {
                       element = element.copyWith(isActive: false);
                     }
                   }
@@ -793,6 +811,8 @@ class ToolBarState extends State<ToolBar> {
         return {'format': 'header', 'value': isActive ? 1 : 4};
       case ToolBarStyle.headerTwo:
         return {'format': 'header', 'value': isActive ? 2 : 4};
+      case ToolBarStyle.headerThree:
+        return {'format': 'header', 'value': isActive ? 3 : 4};
       case ToolBarStyle.background:
         return {'format': 'background', 'value': 'red'};
       case ToolBarStyle.link:
@@ -1217,6 +1237,8 @@ class ToolBarItem extends StatelessWidget {
         return _getAssetImageWidget(ImageConstant.kiHeaderOneDarkPng);
       case ToolBarStyle.headerTwo:
         return _getAssetImageWidget(ImageConstant.kiHeaderTwoDarkPng);
+      case ToolBarStyle.headerThree:
+        return _getAssetImageWidget(ImageConstant.kiHeaderThreeDarkPng);
       case ToolBarStyle.background:
         return _getIconWidget(Icons.font_download_sharp);
       case ToolBarStyle.image:
@@ -1315,6 +1337,10 @@ enum ToolBarStyle {
   /// [headerTwo] makes the text H2
 
   headerTwo("Header H2"),
+
+  /// [headerThree] makes the text H3
+
+  headerThree("Header H3"),
 
   /// [color] sets font color
 

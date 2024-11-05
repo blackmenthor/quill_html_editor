@@ -97,7 +97,7 @@ class FormatConfig {
             ? 4
             : headerType?.index == 0
                 ? 1
-                : 2,
+                : (headerType?.index == 1 ? 2 : 3),
       if (color != null) 'color': color?.toHex(),
       if (background != null) 'background': background?.toHex(),
       if (align != null) 'align': (align ?? AlignType.left).name,
@@ -128,5 +128,8 @@ enum HeaderType {
   headerOne,
 
   /// to set the H2 header,
-  headerTwo
+  headerTwo,
+
+  /// to set the H3 header,
+  headerThree
 }
