@@ -135,15 +135,23 @@ class _InputUrlWidgetState extends State<InputUrlWidget> {
                               if (text == null || text.isEmpty) {
                                 return 'Can\'t be empty';
                               }
+                              if (!text.startsWith('http://') &&
+                                  !text.startsWith('https://')) {
+                                return 'Should be an url';
+                              }
                               return null;
                             },
                             decoration: const InputDecoration(
                                 contentPadding:
                                     EdgeInsets.symmetric(horizontal: 5),
                                 errorBorder: InputBorder.none,
-                                hintText: ' Type URL',
+                                hintText:
+                                    'Type URL: should start with http:// or https://',
                                 alignLabelWithHint: true,
-                                hintStyle: TextStyle(fontSize: 10),
+                                hintStyle: TextStyle(
+                                  fontSize: 16,
+                                  color: Color(0xFF046505A),
+                                ),
                                 border: InputBorder.none),
                           ),
                         ),
